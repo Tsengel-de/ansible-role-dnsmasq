@@ -1,0 +1,70 @@
+---
+# defaults file for Tsengel-de.dnsmasq
+
+dnsmasq_service_name: dnsmasq
+dnsmasq_package_list:
+  - dnsmasq
+
+# Host interface name providing the DNSMASQ service (DNS, DHCP, TFTP, ...)
+dnsmasq_interface: ''
+
+# Template used to provide main configuration file.
+dnsmasq_conf_template: 'dnsmasq.j2'
+
+# Path to the main configuration file
+dnsmasq_conf_directory: '/etc/dnsmasq.d/'
+
+# Listening address
+dnsmasq_listen_address: ''
+
+# Local domain
+dnsmasq_domain_name: example.tsengel.de
+
+# DHCP range
+dnsmasq_dhcp_range: '10.0.0.32,10.0.0.128'
+
+# Home network DNS servers
+dnsmasq_upstream_dns_servers:
+  - 8.8.8.8
+  - 8.8.8.4
+
+# Whether to add dns entry from ansible inventory
+dnsmasq_discover_inventory: false
+
+# By default it is added to the configuration of the hosts within inventory
+# variables: ip, mac and hostname are needed in the inventory
+
+# Aditional DHCP configuration
+# Example:
+# dnsmasq_additional_dhcp_hosts:
+#   ethernet_switch:
+#     desc: "Ethernet Switch"
+#     mac: 94:a6:7e:7c:c7:69
+#     ip: 10.0.0.2
+dnsmasq_additional_dhcp_hosts: {}
+
+# Additional DNS configuration
+# Example
+# dnsmasq_additional_dns_hosts:
+#   ntp_server:
+#     desc: "NTP Server"
+#     hostname: ntp
+#     ip: 10.0.0.1
+#   dns_server:
+#     desc: "DNS Server"
+#     hostname: dns
+#     ip: 10.0.0.1
+dnsmasq_additional_dns_hosts: {}
+
+# enable tftp
+dnsmasq_enable_tftp: false
+dnsmasq_tftp_root: /srv/tftp
+
+# additional config
+dnsmasq_additional_conf: []
+# Exaple
+# dnsmasq_additional_conf: |-
+#        # Enabling Netboot
+#        dhcp-boot=pxelinux.0
+#        dhcp-match=set:efi-x86_64,option:client-arch,7
+#        dhcp-boot=tag:efi-x86_64,bootx64.efi
